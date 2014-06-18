@@ -6,6 +6,10 @@
     var $table = $('.board').find('table');
     var $tBody = $table.find('tbody');
     var content;
+    var formatNumber = function(number) {
+        /* adds the commas in the number */
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
 
     var poller = new window.massrel.Poller(options, function(bands){
         if(!$.isEmptyObject(bands)){
@@ -17,7 +21,7 @@
                 content += bandInfo.name;
                 content += '</td>';
                 content += '<td>';
-                content += bandInfo.count;
+                content += formatNumber(bandInfo.count);
                 content += '<span>Mentions</span>';
                 content += '</td>';
                 content += '</tr>';
